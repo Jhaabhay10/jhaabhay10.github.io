@@ -1,6 +1,5 @@
 
-
-<title>hello</title>
+<title>DONUT</title>
 <html lang="en">
 <head>
     <link rel="stylesheet" href="css/dragbox.css">
@@ -9,16 +8,24 @@
 <body>
 
     <script src="js/xeogl.js"></script>
+    <script src="js/xeogl/src/controls/cameraControl.js"></script>
 
     <script>
+
+        var scene = new xeogl.Scene();
+
+        var Light = new xeogl.AmbientLight({ color: [.7, .9, 1.0], intensity: 0 });
+
         var geometry = new xeogl.TorusGeometry({
-            radius: 0.6,
-            tube: 0.3
+            radius: 0.8,
+            tube: 0.5,
+            edgeThreshold: 1
         });
 
         var material = new xeogl.MetallicMaterial({
             baseColor: [0.0, 0.0, 1.0],
             roughness: 1.0,
+            edges: true
         });
 
         var mesh = new xeogl.Mesh({
@@ -27,16 +34,59 @@
             position: [0, 0, 0]
         });
 
-        // Rotate and scale our torus mesh
-        mesh.rotation = [0, 90, 0];
+        camera = mesh.scene.camera;
 
-        // Update the rotation angle
-        mesh.rotation = [0, 90, 0];
+        camera.eye = [0, 0, -10];
+
 
         mesh.scene.on("tick", function () {
-            mesh.rotateY(0.5);
+            camera.orbitYaw(2);
+        })
+
+        input = scene.input;
+
+        input.on("mousedown", function (coords) {
+            document.getElementById("Down").innerHTML = coords[0] + " , " + coords[1];
         });
+
+        input.on("mouseup", function (coords) {
+            document.getElementById("Up").innerHTML = coords[0] + " , " + coords[1];
+        });
+
+        input.on("mouseclicked", function (coords) {
+            document.getElementById("Click").innerHTML = coords[0] + " , " + coords[1];
+        });
+
+        input.on("dblclick", function (coords) {
+            document.getElementById("Double Click").innerHTML = coords[0] + " , " + coords[1];
+        });
+
+        input.on("mouseDownLeft", function (coords) {
+            document.getElementById("MDL").innerHTML = coords[0] + " , " + coords[1];
+        });
+
+        input.on("mouseDownRight", function (coords) {
+            document.getElementById("MDR").innerHTML = coords[0] + " , " + coords[1];
+        });
+
+        mesh.on("mouseover", function (coords) {
+            document.getElementById("mouse over").innerHTML = coords[0] + " , " + coords[1];
+        })
+
+        new xeogl.CameraControl(active = true);
+
+
+
+
     </script>
+
+    <font color="white">
+        Down:<span id="Down"></span><br />
+        Up:<span id="Up"></span><br />
+        Click:<span id="Click"></span><br />
+        Double Click:<span id="Double Click"></span><br />
+        Mouse over:<span id="mouse over"></span><br />
+    </font>
 
 
 </body>
