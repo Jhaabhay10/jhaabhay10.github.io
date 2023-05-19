@@ -1,5 +1,43 @@
-<html>
+
+
+<title>hello</title>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/dragbox.css">
+    <link rel="stylesheet" href="css/rotatebox.css">
+</head>
 <body>
-HELLO WORLD
+
+    <script src="https://github.com/Jhaabhay10/xeogl/tree/499863cb50bf605f97e3f1e8693051ce5b656143/build/xeogl.js"></script>
+
+    <script>
+        var geometry = new xeogl.TorusGeometry({
+            radius: 0.6,
+            tube: 0.3
+        });
+
+        var material = new xeogl.MetallicMaterial({
+            baseColor: [0.0, 0.0, 1.0],
+            roughness: 1.0,
+        });
+
+        var mesh = new xeogl.Mesh({
+            geometry: geometry,
+            material: material,
+            position: [0, 0, 0]
+        });
+
+        // Rotate and scale our torus mesh
+        mesh.rotation = [0, 90, 0];
+
+        // Update the rotation angle
+        mesh.rotation = [0, 90, 0];
+
+        mesh.scene.on("tick", function () {
+            mesh.rotateY(0.5);
+        });
+    </script>
+
+
 </body>
 </html>
