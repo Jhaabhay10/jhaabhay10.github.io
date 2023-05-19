@@ -21290,7 +21290,7 @@
             });
 
 
-            cfg.element.addEventListener("mousedown", this._mouseDownListener = function (e) {
+            document.addEventListener("mousedown", this._mouseDownListener = function (e) {
 
                 if (!self.enabled) {
                     return;
@@ -21432,7 +21432,7 @@
                 }
             });
 
-            cfg.element.addEventListener("wheel", this._mouseWheelListener = function (e, d) {
+            document.addEventListener("wheel", this._mouseWheelListener = function (e, d) {
 
                 if (!self.enabled) {
                     return;
@@ -21457,7 +21457,7 @@
                 let downY;
 
                 // Tolerance between down and up positions for a mouse click
-                const tolerance = 2;
+                const tolerance = 1;
 
                 self.on("mousedown", function (params) {
                     downX = params[0];
