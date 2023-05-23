@@ -1,15 +1,10 @@
-
-<title>DONUT</title>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="css/dragbox.css">
-    <link rel="stylesheet" href="css/rotatebox.css">
+    <title>DONUT</title>
+    <script src="js/xeogl.js"></script>
 </head>
 <body>
-
-    <script src="js/xeogl.js"></script>
-    <script src="js/xeogl/src/controls/cameraControl.js"></script>
-
     <script>
 
         var scene = new xeogl.Scene();
@@ -69,11 +64,11 @@
             document.getElementById("MDR").innerHTML = coords[0] + " , " + coords[1];
         });
 
-        mesh.on("mouseover", function (coords) {
+        input.on("mouseover", function (coords) {
             document.getElementById("mouse over").innerHTML = coords[0] + " , " + coords[1];
         })
 
-        new xeogl.CameraControl(active = true);
+        new xeogl.CameraControl();
 
 
 
